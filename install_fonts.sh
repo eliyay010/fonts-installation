@@ -5,8 +5,8 @@
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 
 # Ensure wget and jq are installed
-sudo apt update
-sudo apt install wget jq -y
+apt update
+apt install wget jq -y
 
 echo "Setup complete. Starting download process..."
 FONT_DIR="$HOME/.local/share/fonts"
