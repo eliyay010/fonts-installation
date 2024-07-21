@@ -1,15 +1,19 @@
 #!/bin/bash
-# Script to download and install fonts from a specific directory on a server
+# Script to download and install fonts from a GitHub directory using the GitHub API
 
 FONT_DIR="$HOME/.local/share/fonts"
 mkdir -p $FONT_DIR
 
-SERVER_URL="wget -qO- https://raw.githubusercontent.com/eliyay010/fonts-installation/main/fonts/Calibri/"
+REPO="eliyay010/fonts-installation"
+PATH="fonts/Calibri"
 
-# Fetch the list of font files from the server
-echo "Listing font files from $SERVER_URL:"
-wget -qO- $SERVER_URL | grep -oP 'href="\K[^"]+' | grep '\.ttf$'
+# GitHub API endpoint to get the contents of the directory
+API_URL="https://api.github.com/repos/$REPO/contents/$PATH"
 
-echo "Fonts installed successfully."
+# Fetch the list of font files using GitHub API and filter for .ttf files
+echo "Listing font files from $API_URL:"
+curl -s $API_URL | jq -r '.[] | select(.name | endswith(".ttf")) | .name'
+
+echo "Fonts listed successfully."
 echo "Press enter to exit"
 read
