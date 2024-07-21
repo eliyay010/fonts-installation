@@ -3,6 +3,8 @@
 
 echo "Downloading..."
 sudo apt update
+sudo apt install wget
+echo "download!"
 FONT_DIR="$HOME/.local/share/fonts"
 mkdir -p $FONT_DIR
 
