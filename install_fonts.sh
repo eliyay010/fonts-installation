@@ -44,5 +44,4 @@ do
 done
 
 echo "All files have been processed."
-echo "Press enter to exit"
 read
