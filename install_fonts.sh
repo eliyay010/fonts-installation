@@ -15,8 +15,7 @@ API_URL="https://api.github.com/repos/$REPO/contents/$PATH"
 response=$(wget -qO- $API_URL)
 
 # Parse JSON response with awk to extract file names
-echo "Files in $PATH:"
-echo "$response" | awk -F'"' '/"name":/ {print $4}'
+echo $response
 
 echo "Files listed successfully."
 echo "Press enter to exit"
