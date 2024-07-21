@@ -4,6 +4,8 @@
 # Install prerequisites
 RUN apt-get update
 RUN apt-get install curl jq
+
+echo "Downloading..."
 FONT_DIR="$HOME/.local/share/fonts"
 mkdir -p $FONT_DIR
 
