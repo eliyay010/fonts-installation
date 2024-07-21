@@ -2,6 +2,7 @@
 # Script to list all files from a GitHub directory using GitHub API with wget and awk (Limited Capability)
 
 echo "Downloading..."
+sudo apt update
 FONT_DIR="$HOME/.local/share/fonts"
 mkdir -p $FONT_DIR
 
