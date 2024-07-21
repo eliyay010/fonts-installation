@@ -1,6 +1,9 @@
 #!/bin/bash
 # Script to list all files from a GitHub directory using the GitHub API
 
+# Install prerequisites
+RUN apt-get update
+RUN apt-get install curl jq
 FONT_DIR="$HOME/.local/share/fonts"
 mkdir -p $FONT_DIR
 
