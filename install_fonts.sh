@@ -1,9 +1,18 @@
 #!/bin/bash
 # Script to list all files from a GitHub directory using the GitHub API
 
-# Install prerequisites
-RUN apt-get update
-RUN apt-get install curl jq
+# Installing prerequisites if they are not installed
+if ! command -v curl &> /dev/null
+then
+    echo "curl could not be found, installing..."
+    sudo apt-get update && sudo apt-get install -y curl
+fi
+
+if ! command -v jq &> /dev/null
+then
+    echo "jq could not be found, installing..."
+    sudo apt-get update && sudo apt-get install -y jq
+fi
 
 echo "Downloading..."
 FONT_DIR="$HOME/.local/share/fonts"
