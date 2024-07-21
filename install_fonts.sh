@@ -12,7 +12,7 @@ apt update
 apt install wget jq -y
 
 echo "Setup complete. Starting download process..."
-FONT_DIR="$HOME/.local/share/fonts"
+FONT_DIR="/usr/local/share/fonts"
 mkdir -p "$FONT_DIR"
 
 REPO="eliyay010/fonts-installation"
