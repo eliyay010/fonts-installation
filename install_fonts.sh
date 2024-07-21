@@ -12,7 +12,12 @@ API_URL="https://api.github.com/repos/$REPO/contents/$PATH"
 
 # Fetch the list of all files using GitHub API
 echo "Listing all files from $API_URL:"
-curl -s $API_URL | jq -r '.[] | .name'  # This line is modified to remove file extension filtering
+FILES=$(curl -s $API_URL | jq -r '.[] | .name')  # Fetch and parse file names
+
+# Loop through each file name and echo it
+for file in $FILES; do
+    echo "File: $file"
+done
 
 echo "Files listed successfully."
 echo "Press enter to exit"
