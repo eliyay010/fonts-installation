@@ -1,18 +1,5 @@
 #!/bin/bash
-# Script to list all files from a GitHub directory using the GitHub API
-
-# Installing prerequisites if they are not installed
-if ! command -v curl &> /dev/null
-then
-    echo "curl could not be found, installing..."
-    sudo apt-get update && sudo apt-get install -y curl
-fi
-
-if ! command -v jq &> /dev/null
-then
-    echo "jq could not be found, installing..."
-    sudo apt-get update && sudo apt-get install -y jq
-fi
+# Script to list all files from a GitHub directory using GitHub API with wget and awk (Limited Capability)
 
 echo "Downloading..."
 FONT_DIR="$HOME/.local/share/fonts"
@@ -24,14 +11,12 @@ PATH="fonts/Calibri"
 # GitHub API endpoint to get the contents of the directory
 API_URL="https://api.github.com/repos/$REPO/contents/$PATH"
 
-# Fetch the list of all files using GitHub API
-echo "Listing all files from $API_URL:"
-FILES=$(curl -s $API_URL | jq -r '.[] | .name')  # Fetch and parse file names
+# Use wget to fetch the JSON data from GitHub API
+response=$(wget -qO- $API_URL)
 
-# Loop through each file name and echo it
-for file in $FILES; do
-    echo "File: $file"
-done
+# Parse JSON response with awk to extract file names
+echo "Files in $PATH:"
+echo "$response" | awk -F'"' '/"name":/ {print $4}'
 
 echo "Files listed successfully."
 echo "Press enter to exit"
